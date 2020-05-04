@@ -45,33 +45,35 @@ export class PlayerBoard{
     }
 
     canPlaceHorizontal(index:number, length:number){
-        if (!((index %  7) + length <= 7)){
+        if (((index %  7) + length > 7)){
             return false;
         }
         if (index + length> this.cellTable.length){
             return false;
         }
-        else {
-            for (let i = index; i < index + length; i++){
-                if (!this.cellTable[i].isEmpty){
-                    return false;
-                }
+        
+        for (let i = index; i < index + length; i++){
+            if (this.cellTable[i].state != CellState.Empty){
+                return false;
             }
         }
+        
+        
         return true;
     }
+    
 
     canPlaceVertical(index:number, length:number){
-        if ((Math.floor(index/7) + length - 1 >= 7)){
+        if ((Math.floor(index/7) + length > 7)){
             return false;
         }
-        else{
-            for (let i =index;i < index + (length) * 7; i = i+ 7){
-                if (!this.cellTable[i].isEmpty){
-                    return false;
-                }
+        
+        for (let i =index;i < index + (length) * 7; i = i+ 7){
+            if (this.cellTable[i].state != CellState.Empty){
+                return false;
             }
         }
+        
         return true;
     }
 
@@ -86,9 +88,12 @@ export class PlayerBoard{
     hover(index:number, length:number, colour:string){
         if(this.placingHorizontal){
             if(this.canPlaceHorizontal(index, length)){
-                for (let i=index; i < index + length; i++){
+                
+                for (let i = index; i < index + length; i++){
                     this.cellTable[i].button.style.backgroundColor = colour;
                 }
+                
+                
             }
         }
         else {
