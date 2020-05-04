@@ -1,4 +1,25 @@
+#gameContainer {
+    flex-wrap: wrap;
+    display: flex;
+}
 #playerTable button{
     width: 70px;
+    height: 70px;
+}
+#playerButtons {
+    margin-left: 20px;
+}
+
+#playerButtons button{
+    width: 80px;
+    height: 60px;
+    background-color: blanchedalmond;
+}
+#enemyContainer {
+    margin-left: 30px;
+}
+
+#enemyTable button{
+    width: 70px;    
     height: 70px;
 }
