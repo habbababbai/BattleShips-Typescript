@@ -17,21 +17,14 @@ export class PlayerBoard{
         let isPlaced = false;
         if (this.placingHorizontal){
             if(this.canPlaceHorizontal(index, length)){
-                for (let i = index; i < index+ length; i++){
-                    this.cellTable[i].button.style.backgroundColor = "Black";
-                    this.cellTable[i].state = CellState.Ship;
-                    isPlaced  = true;
-                    //console.log("aaa");
-                }
+                this.placeHorizontal(index, length);
+                isPlaced  = true;                
             }
         }
         else {
             if (this.canPlaceVertical(index, length)){
-                for (let i = index; i < index + (length) * 7; i = i + 7){
-                    this.cellTable[i].button.style.backgroundColor = "Black";
-                    this.cellTable[i].state = CellState.Ship;
-                    isPlaced  = true;
-                }
+                this.placeVertical(index, length);
+                isPlaced = true;
             }
         }
 
@@ -41,6 +34,19 @@ export class PlayerBoard{
                 this.cellTable[i].button.onmouseover = function() {}; 
                 this.cellTable[i].button.onmouseout = function() {}; 
             }
+        }
+    }
+    placeHorizontal(index:number, length:number){
+        for (let i = index; i < index+ length; i++){
+            this.cellTable[i].button.style.backgroundColor = "Black";
+            this.cellTable[i].state = CellState.Ship;
+            
+        }
+    }
+    placeVertical(index:number, length:number){
+        for (let i = index; i < index + (length) * 7; i = i + 7){
+            this.cellTable[i].button.style.backgroundColor = "Black";
+            this.cellTable[i].state = CellState.Ship;
         }
     }
 
@@ -103,5 +109,33 @@ export class PlayerBoard{
                 }
             }
         }
+    }
+    setRandomly() {
+        
+        this.placeRandomly(4);
+        this.placeRandomly(3);
+        this.placeRandomly(3);
+        this.placeRandomly(2);
+        
+    }
+
+    placeRandomly(length:number){
+        let isPlaced:boolean;
+        do {
+            let rnd = this.getRandomInt(0, this.cellTable.length - 1);
+            if (this.canPlaceHorizontal(rnd, length)){
+                this.placeHorizontal(rnd, length);
+                isPlaced = true;
+            }
+            if (this.canPlaceVertical(rnd, length)){
+                this.placeVertical(rnd, length);
+                isPlaced = true;
+            }
+        }
+        while (!isPlaced);
+    }
+
+    getRandomInt(min:number, max:number){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
