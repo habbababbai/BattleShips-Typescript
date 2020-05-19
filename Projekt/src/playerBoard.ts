@@ -1,16 +1,22 @@
+import { colors } from './colors/colors';
 import { Board } from './board';
 import { CellState } from './cellState';
-import { Cell } from './cell';
-
-
 
 export class PlayerBoard extends Board{
     
     placingHorizontal: boolean;
+    is5Placed: boolean;
+    is4Placed: boolean;
+    is3Placed: boolean;
+    is2Placed: boolean;
 
     constructor (buttons: HTMLElement[]){
         super(buttons);
         this.placingHorizontal = true;
+        this.is5Placed = false;
+        this.is4Placed = false;
+        this.is3Placed = false;
+        this.is2Placed = false;
     }
     setShip(index:number, length:number){
         let isPlaced = false;
@@ -28,23 +34,56 @@ export class PlayerBoard extends Board{
         }
 
         if (isPlaced){
-            for (let i = 0; i < this.cellTable.length; i++){
-                this.cellTable[i].button.onclick = function() {}; 
-                this.cellTable[i].button.onmouseover = function() {}; 
-                this.cellTable[i].button.onmouseout = function() {}; 
+            switch(length) {
+                case 2:
+                    this.is2Placed = true;
+                    break;
+                case 3:
+                    this.is3Placed = true;
+                    break;
+                case 4: 
+                    this.is4Placed = true;
+                    break;
+                case 5:
+                    this.is5Placed =true
+                    break;
             }
+            this.resetButtonEvents();
+        }
+    }
+    setBoardRandomly() {
+        this.placeRandomly(5);
+        this.placeRandomly(4);
+        this.placeRandomly(3);
+        this.placeRandomly(2);
+        this.is5Placed = true;
+        this.is4Placed = true;
+        this.is3Placed = true;
+        this.is2Placed = true;
+    }
+    areShipsPlaced() {
+        if (this.is5Placed && this.is4Placed && this.is3Placed && this.is2Placed){
+            return true;
+        }
+        return false;
+    }
+    resetButtonEvents() {
+        for (let i = 0; i < this.cellTable.length; i++){
+            this.cellTable[i].button.onclick = function() {}; 
+            this.cellTable[i].button.onmouseover = function() {}; 
+            this.cellTable[i].button.onmouseout = function() {}; 
         }
     }
     placeHorizontal(index:number, length:number){
         for (let i = index; i < index+ length; i++){
-            this.cellTable[i].button.style.backgroundColor = "Black";
+            this.cellTable[i].button.style.backgroundColor = colors.ship;
             this.cellTable[i].state = CellState.Ship;
             
         }
     }
     placeVertical(index:number, length:number){
         for (let i = index; i < index + (length) * 7; i = i + 7){
-            this.cellTable[i].button.style.backgroundColor = "Black";
+            this.cellTable[i].button.style.backgroundColor = colors.ship;
             this.cellTable[i].state = CellState.Ship;
         }
     }

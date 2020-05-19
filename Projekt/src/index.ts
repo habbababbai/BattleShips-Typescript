@@ -1,3 +1,4 @@
+import { Game } from './game';
 import { EnemyBoard } from './enemyBoard';
 import { PlayerBoard } from './playerBoard';
 
@@ -9,23 +10,17 @@ function disableButton(bttnId:string) {
 window.onload = () => {
     
     let playerButtons = Array.prototype.slice.call(document.getElementById("playerTable").querySelectorAll("button"));
-    let pBoard = new PlayerBoard(playerButtons);
     let enemyButtons = Array.prototype.slice.call(document.getElementById("enemyTable").querySelectorAll("button"));
-    let eBoard = new EnemyBoard(enemyButtons);
+    let game = new Game(playerButtons, enemyButtons)
 
-
-    document.getElementById("ship4").addEventListener("click", function() {pBoard.chooseShip(4); disableButton("ship4"); disableButton("random")});
-    document.getElementById("ship31").addEventListener("click", function() {pBoard.chooseShip(3); disableButton("ship31"); disableButton("random")});
-    document.getElementById("ship32").addEventListener("click", function() {pBoard.chooseShip(3); disableButton("ship32"); disableButton("random")});
-    document.getElementById("ship2").addEventListener("click", function() {pBoard.chooseShip(2); disableButton("ship2"); disableButton("random")});
-    document.getElementById("orientation").addEventListener("click", function() {pBoard.placingHorizontal = !pBoard.placingHorizontal /*console.log("isHorizontal"  + game.placingHorizontal)*/})
-    document.getElementById("startGame").addEventListener("click", function() {eBoard.startGame()});
+    document.getElementById("ship5").addEventListener("click", function() {game.pBoard.chooseShip(5)});
+    document.getElementById("ship4").addEventListener("click", function() {game.pBoard.chooseShip(4)});
+    document.getElementById("ship3").addEventListener("click", function() {game.pBoard.chooseShip(3)});
+    document.getElementById("ship2").addEventListener("click", function() {game.pBoard.chooseShip(2)});
+    document.getElementById("orientation").addEventListener("click", function() {game.changePlacingOrientation()});
+    document.getElementById("reset").addEventListener("click", function() {game.resetGame()})
+    document.getElementById("startGame").addEventListener("click", function() {game.startGame()});
     document.getElementById("random").addEventListener("click", function() {
-        pBoard.setBoardRandomly(); 
-        disableButton("random"); 
-        disableButton("ship4"); 
-        disableButton("ship31")
-        disableButton("ship32")
-        disableButton("ship2")});
+        game.pBoard.setBoardRandomly()});
 
 }

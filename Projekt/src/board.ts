@@ -1,5 +1,8 @@
+import { colors } from './colors/colors';
 import { Cell } from './cell';
 import { CellState } from './cellState';
+import { getRandomInt } from './randomInt';
+
 
 export class Board{
     cellTable: Cell[];
@@ -55,8 +58,8 @@ export class Board{
     }
     setBoardRandomly() {
         
+        this.placeRandomly(5);
         this.placeRandomly(4);
-        this.placeRandomly(3);
         this.placeRandomly(3);
         this.placeRandomly(2);
         
@@ -65,7 +68,7 @@ export class Board{
     placeRandomly(length:number){
         let isPlaced:boolean;
         do {
-            let rnd = this.getRandomInt(0, this.cellTable.length - 1);
+            let rnd = getRandomInt(0, this.cellTable.length - 1);
             if (this.canPlaceHorizontal(rnd, length)){
                 this.placeHorizontal(rnd, length);
                 isPlaced = true;
@@ -77,9 +80,11 @@ export class Board{
         }
         while (!isPlaced);
     }
-
-    getRandomInt(min:number, max:number){
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+    resetBoard() {
+        for (let i = 0; i < this.cellTable.length; i++){
+            this.cellTable[i].button.style.backgroundColor = colors.empty;
+            this.cellTable[i].state = CellState.Empty;
+        }
     }
 
 }
