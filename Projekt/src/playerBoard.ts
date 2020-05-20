@@ -9,6 +9,7 @@ export class PlayerBoard extends Board{
     is4Placed: boolean;
     is3Placed: boolean;
     is2Placed: boolean;
+    shipsPlaced: boolean[];
 
     constructor (buttons: HTMLElement[]){
         super(buttons);
@@ -17,6 +18,7 @@ export class PlayerBoard extends Board{
         this.is4Placed = false;
         this.is3Placed = false;
         this.is2Placed = false;
+        this.shipsPlaced = [this.is2Placed, this.is3Placed, this.is4Placed, this.is5Placed];
     }
     getEmptyCells (){
         let emptyCells: number[] = [];
@@ -90,7 +92,7 @@ export class PlayerBoard extends Board{
                     this.is4Placed = true;
                     break;
                 case 5:
-                    this.is5Placed =true
+                    this.is5Placed = true
                     break;
             }
             this.resetButtonEvents();
@@ -108,6 +110,12 @@ export class PlayerBoard extends Board{
     }
     areShipsPlaced() {
         if (this.is5Placed && this.is4Placed && this.is3Placed && this.is2Placed){
+            return true;
+        }
+        return false;
+    }
+    anyShipPlaced(){
+        if (this.is5Placed || this.is4Placed || this.is3Placed || this.is2Placed){
             return true;
         }
         return false;
@@ -133,11 +141,14 @@ export class PlayerBoard extends Board{
         }
     }
     chooseShip(length:number) {
-        for(let i = 0; i < this.cellTable.length; i++){
-            this.cellTable[i].button.onclick = () => {this.setShip(i, length)};
-            this.cellTable[i].button.onmouseover = () => {this.hover(i, length, "Grey")};
-            this.cellTable[i].button.onmouseout = () => {this.hover(i, length, "White")};
+        if (!this.shipsPlaced[length - 2]){
+            for(let i = 0; i < this.cellTable.length; i++){
+                this.cellTable[i].button.onclick = () => {this.setShip(i, length)};
+                this.cellTable[i].button.onmouseover = () => {this.hover(i, length, "Grey")};
+                this.cellTable[i].button.onmouseout = () => {this.hover(i, length, "White")};
+            }
         }
+        
     }
 
     hover(index:number, length:number, colour:string){

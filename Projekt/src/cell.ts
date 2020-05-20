@@ -4,12 +4,10 @@ export class Cell {
     
     button:HTMLElement;
     state:CellState;
-    index: number;
     
-    constructor(button:HTMLElement, index:number) {
+    constructor(button:HTMLElement) {
         this.state= CellState.Empty;
         this.button = button;
-        this.index = index;
         this.button.style.backgroundColor = colors.empty;
     }
     

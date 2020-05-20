@@ -12,8 +12,6 @@ export class Game{
     pHitCounter: number;
     eHitCounter: number;
 
-
-
     constructor(pButtons: HTMLElement[], eButtons: HTMLElement[]) {
         this.pBoard = new PlayerBoard(pButtons);
         this.eBoard = new Board(eButtons);
@@ -36,13 +34,7 @@ export class Game{
         for (let i = 0; i < this.eBoard.cellTable.length; i++){
             this.eBoard.cellTable[i].button.onclick = () => this.shootEnemyCell(this.eBoard.cellTable[i]); console.log(this.pBoard.getNeighbours(i));
         }
-    }
-    disableEnemyBoard(){
-        for (let i = 0; i < this.eBoard.cellTable.length; i++){
-            this.eBoard.cellTable[i].button.onclick = function() {};
-        }
-    }
-    
+    } 
     shootPlayerCell() {
         let hitNeighbours = this.pBoard.getHitNeighbours();
         if (!Array.isArray(hitNeighbours) || !hitNeighbours.length){
@@ -61,6 +53,7 @@ export class Game{
         }
         if(this.playerCellState(availableCells[rnd]) == CellState.Ship) {
             this.pBoard.setCell(availableCells[rnd], CellState.Hit);
+            this.pHitCounter++;
         }
 
     }
@@ -72,24 +65,11 @@ export class Game{
         }
         if(this.playerCellState(hitNeighbours[rnd]) == CellState.Ship) {
             this.pBoard.setCell(hitNeighbours[rnd], CellState.Hit);
+            this.pHitCounter++;
         }
 
     }
-    rndShot() {
-     let didHit = false;
-     do {
-        let rnd = getRandomInt(0, this.pBoard.cellTable.length - 1);
-        if (this.playerCellState(rnd) == CellState.Empty){
-            this.pBoard.setCell(rnd, CellState.Miss);
-            didHit = true;
-        }
-        if(this.playerCellState(rnd) == CellState.Ship) {
-            this.pBoard.setCell(rnd, CellState.Hit);
-            didHit = true;
-        }
-     }
-     while (!didHit)
-    }
+
     shootEnemyCell(c:Cell) {
         switch(c.state){
             case CellState.Empty:
@@ -112,21 +92,23 @@ export class Game{
         return this.pBoard.cellTable[n].state
     }
     checkForWin(){
-        if (this.pHitCounter == 14 || this.eHitCounter == 14){
-            this.disableEnemyBoard();
-            if (this.pHitCounter == 14){
-                return "Player has won";
-            }
-            else{
-                return "Enemy has won";
-            }
+        if (this.pHitCounter == 14){
+            this.eBoard.disableBoard();
+            alert("CPU Won!");
+            return true;
         }
-        return "";
+        if (this.eHitCounter == 14){
+            this.eBoard.disableBoard();
+            alert("Player won!");
+            return true;
+        }
+        return false;
     }
     resetGame() {
         this.pBoard.resetBoard();
+        this.pBoard.disableBoard();
         this.eBoard.resetBoard();
-        this.disableEnemyBoard();
+        this.eBoard.disableBoard();
         this.eHitCounter = 0;
         this.pHitCounter = 0;
         this.pBoard.is5Placed = false;

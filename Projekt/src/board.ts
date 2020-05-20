@@ -10,19 +10,17 @@ export class Board{
     constructor (buttons:HTMLElement[]){
         this.cellTable = [];
         for (let i = 0; i < buttons.length; i++){
-            this.cellTable.push(new Cell(buttons[i], i));
+            this.cellTable.push(new Cell(buttons[i]));
         }
     }
     placeHorizontal(index:number, length:number){
         for (let i = index; i < index+ length; i++){
-            //this.cellTable[i].button.style.backgroundColor = "Black";
             this.cellTable[i].state = CellState.Ship;
             
         }
     }
     placeVertical(index:number, length:number){
         for (let i = index; i < index + (length) * 7; i = i + 7){
-            //this.cellTable[i].button.style.backgroundColor = "Black";
             this.cellTable[i].state = CellState.Ship;
         }
     }
@@ -84,6 +82,12 @@ export class Board{
         for (let i = 0; i < this.cellTable.length; i++){
             this.cellTable[i].button.style.backgroundColor = colors.empty;
             this.cellTable[i].state = CellState.Empty;
+            this.cellTable[i].button.onclick = function () {};
+        }
+    }
+    disableBoard() {
+        for(let i = 0; i < this.cellTable.length; i++){
+            this.cellTable[i].button.onclick = function () {};
         }
     }
     setCell(index:number, state:CellState) {
