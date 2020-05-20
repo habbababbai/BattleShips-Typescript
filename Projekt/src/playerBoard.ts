@@ -60,7 +60,7 @@ export class PlayerBoard extends Board{
         if (index % 7 != 0){
             neigbours.push(index - 1);
         }
-        if (index % 6 != 0 || index == 0 || index == 42){
+        if ((index - 6) % 7 != 0 ){
             neigbours.push(index + 1);
         }
         return neigbours;

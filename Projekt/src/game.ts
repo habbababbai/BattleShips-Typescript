@@ -27,7 +27,6 @@ export class Game{
             
             this.activateEnemyBoard();
         }
-        console.log("Ships placed: "+ this.pBoard.areShipsPlaced());
     }
     activateEnemyBoard() {
         this.eBoard.setBoardRandomly();
@@ -69,8 +68,10 @@ export class Game{
         }
 
     }
-
-    shootEnemyCell(c:Cell) {
+    delay (ms:number) {
+        return new Promise( resolve => setTimeout(resolve, ms));
+    }
+    async shootEnemyCell(c:Cell) {
         switch(c.state){
             case CellState.Empty:
                 c.state = CellState.Miss;
@@ -83,7 +84,9 @@ export class Game{
                 break;
         
         };  
-        this.shootPlayerCell();  
+        await this.delay(100)
+        this.shootPlayerCell();
+        await this.delay(200)  
         this.checkForWin();   
         //console.log(this.pBoard.getHitCells());
         //console.log(this.pBoard.getHitNeighbours());
