@@ -1,5 +1,5 @@
 import { Game } from './game';
-import { EnemyBoard } from './enemyBoard';
+import { Board } from './board';
 import { PlayerBoard } from './playerBoard';
 
 function disableButton(bttnId:string) {
@@ -12,7 +12,7 @@ window.onload = () => {
     let playerButtons = Array.prototype.slice.call(document.getElementById("playerTable").querySelectorAll("button"));
     let enemyButtons = Array.prototype.slice.call(document.getElementById("enemyTable").querySelectorAll("button"));
     let game = new Game(playerButtons, enemyButtons)
-
+    console.log(game.pBoard.getEmptyCells());
     document.getElementById("ship5").addEventListener("click", function() {game.pBoard.chooseShip(5)});
     document.getElementById("ship4").addEventListener("click", function() {game.pBoard.chooseShip(4)});
     document.getElementById("ship3").addEventListener("click", function() {game.pBoard.chooseShip(3)});
@@ -22,5 +22,5 @@ window.onload = () => {
     document.getElementById("startGame").addEventListener("click", function() {game.startGame()});
     document.getElementById("random").addEventListener("click", function() {
         game.pBoard.setBoardRandomly()});
-
+        
 }

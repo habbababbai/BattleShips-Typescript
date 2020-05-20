@@ -1,28 +1,54 @@
 #gameContainer {
     flex-wrap: wrap;
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#playerContainer {
+    background-color: rgb(201, 198, 198);
+    border-radius: 15px;
+}
+#enemyContainer {
+    background-color: rgb(212, 212, 212);
+    border-radius: 15px;
+}
+#tableHeader {
+    text-align: center;
 }
 #playerTable button{
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 20px;
 }
-#playerButtons {
-    margin-left: 20px;
+#playerTable button:focus{
+    outline: none;
+}
+#menuButtons {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 25px;
+    background-color: rgb(209, 208, 208);
+    border-radius: 15px;
+    
 }
 
-#playerButtons button{
-    width: 80px;
-    height: 60px;
-    background-color: blanchedalmond;
+#menuButtons button{
+    width: 90px;
+    height: 40px;
+    background-color: rgb(227, 236, 193);
+    border-radius: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 }
 #enemyContainer {
     margin-left: 30px;
 }
 
 #enemyTable button{
-    width: 70px;    
-    height: 70px;
+    width: 65px;    
+    height: 65px;
     border-radius: 20px;
+}
+#enemyTable button:focus{
+    outline: none;
 }

@@ -18,6 +18,51 @@ export class PlayerBoard extends Board{
         this.is3Placed = false;
         this.is2Placed = false;
     }
+    getEmptyCells (){
+        let emptyCells: number[] = [];
+        for (let i = 0; i < this.cellTable.length; i++){
+            if (i % 2 == 0){
+                if (this.cellTable[i].state == CellState.Empty || this.cellTable[i].state == CellState.Ship){
+                    emptyCells.push(i);
+                }
+            }
+        }
+        return emptyCells;
+    }
+    getHitCells () {
+        let hitCells = [];
+        for (let i = 0; i < this.cellTable.length; i++){
+            if(this.cellTable[i].state == CellState.Hit){
+                hitCells.push(i);
+            }
+        }
+        return hitCells;
+    }
+    getHitNeighbours(){
+        let hitCells = this.getHitCells();
+        let hitNeigbhours: number[] = [];
+        for (let i = 0; i < hitCells.length; i++){
+            hitNeigbhours = hitNeigbhours.concat(this.getNeighbours(hitCells[i]));
+        }
+        hitNeigbhours = hitNeigbhours.filter(i => this.cellTable[i].state != CellState.Miss && this.cellTable[i].state != CellState.Hit);
+        return hitNeigbhours;
+    }
+    getNeighbours(index:number) {
+        let neigbours:number[] = [];
+        if (index > 6){
+            neigbours.push(index - 7);
+        }
+        if (index < 42){
+            neigbours.push(index + 7);
+        }
+        if (index % 7 != 0){
+            neigbours.push(index - 1);
+        }
+        if (index % 6 != 0 || index == 0 || index == 42){
+            neigbours.push(index + 1);
+        }
+        return neigbours;
+    }
     setShip(index:number, length:number){
         let isPlaced = false;
         if (this.placingHorizontal){

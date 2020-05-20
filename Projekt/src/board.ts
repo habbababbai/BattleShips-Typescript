@@ -5,12 +5,12 @@ import { getRandomInt } from './randomInt';
 
 
 export class Board{
-    cellTable: Cell[];
+    cellTable: Cell[] = [];
 
     constructor (buttons:HTMLElement[]){
         this.cellTable = [];
         for (let i = 0; i < buttons.length; i++){
-            this.cellTable.push(new Cell(buttons[i]));
+            this.cellTable.push(new Cell(buttons[i], i));
         }
     }
     placeHorizontal(index:number, length:number){
@@ -84,6 +84,23 @@ export class Board{
         for (let i = 0; i < this.cellTable.length; i++){
             this.cellTable[i].button.style.backgroundColor = colors.empty;
             this.cellTable[i].state = CellState.Empty;
+        }
+    }
+    setCell(index:number, state:CellState) {
+        this.cellTable[index].state = state;
+        switch (state){
+            case CellState.Empty:
+                this.cellTable[index].button.style.backgroundColor = colors.empty;
+                break;
+            case CellState.Ship:
+                this.cellTable[index].button.style.backgroundColor = colors.ship;
+                break;
+            case CellState.Miss:
+                this.cellTable[index].button.style.backgroundColor = colors.miss;
+                break;
+            case CellState.Hit:
+                this.cellTable[index].button.style.backgroundColor = colors.hit;
+                break;
         }
     }
 
