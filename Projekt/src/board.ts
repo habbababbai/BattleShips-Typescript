@@ -88,6 +88,8 @@ export class Board{
     disableBoard() {
         for(let i = 0; i < this.cellTable.length; i++){
             this.cellTable[i].button.onclick = function () {};
+            this.cellTable[i].button.onmouseover = function () {};
+            this.cellTable[i].button.onmouseout = function () {};
         }
     }
     setCell(index:number, state:CellState) {
