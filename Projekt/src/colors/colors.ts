@@ -3,4 +3,5 @@ export const colors = {
     empty: 'White',
     hit: 'Red',
     miss: 'Pink',
+    hover: 'Grey'
 }

@@ -4,6 +4,7 @@ import { Cell } from './cell';
 import { PlayerBoard } from './playerBoard';
 import { Board } from './board';
 import { getRandomInt } from './randomInt';
+import * as consts from './consts';
 
 export class Game{
     pBoard: PlayerBoard;
@@ -95,12 +96,12 @@ export class Game{
         return this.pBoard.cellTable[n].state
     }
     checkForWin(){
-        if (this.pHitCounter == 14){
+        if (this.pHitCounter == consts.MAX_HITS){
             this.eBoard.disableBoard();
             alert("CPU Won!");
             return true;
         }
-        if (this.eHitCounter == 14){
+        if (this.eHitCounter == consts.MAX_HITS){
             this.eBoard.disableBoard();
             alert("Player won!");
             return true;

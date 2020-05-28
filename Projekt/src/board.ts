@@ -2,7 +2,7 @@ import { colors } from './colors/colors';
 import { Cell } from './cell';
 import { CellState } from './cellState';
 import { getRandomInt } from './randomInt';
-
+import * as consts from './consts';
 
 export class Board{
     cellTable: Cell[] = [];
@@ -20,12 +20,12 @@ export class Board{
         }
     }
     placeVertical(index:number, length:number){
-        for (let i = index; i < index + (length) * 7; i = i + 7){
+        for (let i = index; i < index + (length) * consts.DIMENSION_LENGTH; i = i + consts.DIMENSION_LENGTH){
             this.cellTable[i].state = CellState.Ship;
         }
     }
     canPlaceHorizontal(index:number, length:number){
-        if (((index %  7) + length > 7)){
+        if (((index %  consts.DIMENSION_LENGTH) + length > consts.DIMENSION_LENGTH)){
             return false;
         }
         if (index + length> this.cellTable.length){
@@ -42,11 +42,11 @@ export class Board{
         return true;
     }
     canPlaceVertical(index:number, length:number){
-        if ((Math.floor(index/7) + length > 7)){
+        if ((Math.floor(index/consts.DIMENSION_LENGTH) + length > consts.DIMENSION_LENGTH)){
             return false;
         }
         
-        for (let i =index;i < index + (length) * 7; i = i+ 7){
+        for (let i =index;i < index + (length) * consts.DIMENSION_LENGTH; i = i+ consts.DIMENSION_LENGTH){
             if (this.cellTable[i].state != CellState.Empty){
                 return false;
             }

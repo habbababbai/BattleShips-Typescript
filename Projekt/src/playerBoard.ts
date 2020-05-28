@@ -1,6 +1,7 @@
 import { colors } from './colors/colors';
 import { Board } from './board';
 import { CellState } from './cellState';
+import * as consts from './consts';
 
 export class PlayerBoard extends Board{
     
@@ -51,16 +52,16 @@ export class PlayerBoard extends Board{
     }
     getNeighbours(index:number) {
         let neigbours:number[] = [];
-        if (index > 6){
-            neigbours.push(index - 7);
+        if (index > consts.FIRST_ROW_LAST_INDEX){
+            neigbours.push(index - consts.DIMENSION_LENGTH);
         }
-        if (index < 42){
-            neigbours.push(index + 7);
+        if (index < consts.LAST_ROW_FIRST_INDEX){
+            neigbours.push(index + consts.DIMENSION_LENGTH);
         }
-        if (index % 7 != 0){
+        if (index % consts.DIMENSION_LENGTH != 0){
             neigbours.push(index - 1);
         }
-        if ((index - 6) % 7 != 0 ){
+        if ((index - consts.FIRST_ROW_LAST_INDEX) % consts.DIMENSION_LENGTH != 0 ){
             neigbours.push(index + 1);
         }
         return neigbours;
@@ -135,7 +136,7 @@ export class PlayerBoard extends Board{
         }
     }
     placeVertical(index:number, length:number){
-        for (let i = index; i < index + (length) * 7; i = i + 7){
+        for (let i = index; i < index + (length) * consts.DIMENSION_LENGTH; i = i + consts.DIMENSION_LENGTH){
             this.cellTable[i].button.style.backgroundColor = colors.ship;
             this.cellTable[i].state = CellState.Ship;
         }
@@ -144,8 +145,8 @@ export class PlayerBoard extends Board{
         if (!this.shipsPlaced[length - 2]){
             for(let i = 0; i < this.cellTable.length; i++){
                 this.cellTable[i].button.onclick = () => {this.setShip(i, length)};
-                this.cellTable[i].button.onmouseover = () => {this.hover(i, length, "Grey")};
-                this.cellTable[i].button.onmouseout = () => {this.hover(i, length, "White")};
+                this.cellTable[i].button.onmouseover = () => {this.hover(i, length, colors.hover)};
+                this.cellTable[i].button.onmouseout = () => {this.hover(i, length, colors.empty)};
             }
         }
         
@@ -164,11 +165,12 @@ export class PlayerBoard extends Board{
         }
         else {
             if (this.canPlaceVertical(index, length)){
-                for (let i = index; i < index + (length * 7); i = i + 7){
+                for (let i = index; i < index + (length * consts.DIMENSION_LENGTH); i = i + consts.DIMENSION_LENGTH){
                     this.cellTable[i].button.style.backgroundColor = colour;
                 }
             }
         }
     }
+    
     
 }

@@ -1,0 +1,5 @@
+export const TABLE_LENGTH = 49;
+export const DIMENSION_LENGTH = 7;
+export const MAX_HITS = 14;
+export const FIRST_ROW_LAST_INDEX = DIMENSION_LENGTH - 1;
+export const LAST_ROW_FIRST_INDEX = TABLE_LENGTH - DIMENSION_LENGTH;
