@@ -1,4 +1,4 @@
-import { colors } from './colors/colors';
+import { colors } from './colors';
 import { Cell } from './cell';
 import { CellState } from './cellState';
 import { getRandomInt } from './randomInt';

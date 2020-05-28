@@ -1,4 +1,4 @@
-import { colors } from './colors/colors';
+import { colors } from './colors';
 import { Board } from './board';
 import { CellState } from './cellState';
 import * as consts from './consts';

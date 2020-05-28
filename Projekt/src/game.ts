@@ -1,4 +1,4 @@
-import { colors } from './colors/colors';
+import { colors } from './colors';
 import { CellState } from './cellState';
 import { Cell } from './cell';
 import { PlayerBoard } from './playerBoard';
