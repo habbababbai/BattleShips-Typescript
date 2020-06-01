@@ -1,0 +1,56 @@
+$table-color: rgb(201, 198, 198);
+$menu-color: rgb(109, 109, 109);
+$menu-button-color: rgb(255, 251, 197);
+$font : 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+#gameContainer {
+    flex-wrap: wrap;
+    display: flex;
+    font-family: $font;
+}
+#playerContainer {
+    background-color: $table-color;
+    border-radius: 15px;
+    table {
+        button {
+            width: 65px;
+            height: 65px;
+            border-radius: 20px;
+        }
+        button:focus {
+            outline: none;
+        }
+    }
+}
+#tableHeader {
+    text-align: center;
+    font-size: 24px;
+    padding: 10px
+}
+
+#enemyContainer {
+    @extend #playerContainer;
+    margin-left: 30px;
+}
+
+#menu {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 25px;
+    background-color: $menu-color;
+    border-radius: 15px;
+    padding: 10px;
+
+    button {
+        width: 90px;
+        height: 40px;
+        background-color: $menu-button-color;
+        border-radius: 25px;
+        font-family: $font;
+    }
+    button:focus {
+        outline: none;
+    }
+}

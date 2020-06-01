@@ -1,5 +1,6 @@
 import { Game } from './game';
 
+
 window.onload = () => {
     
     let playerButtons = Array.prototype.slice.call(document.getElementById("playerTable").querySelectorAll("button"));
