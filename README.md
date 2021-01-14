@@ -1,6 +1,8 @@
 # Aplikacje-Webowe-Projekt
 Repozytorium projektu zaliczeniowego na przedmiot Programowanie Aplikacji Webowych.
+
 Projektem jest prosta gra w statki przeciwko AI napisana w czystym Typescript.
+
 Project is simple Battleships game against AI written in plain Typescript.
 
 # Jak uzyc
