@@ -1,7 +1,7 @@
-# Aplikacje-Webowe-Projekt
+# BattleShips-Typescript
 Repozytorium projektu zaliczeniowego na przedmiot Programowanie Aplikacji Webowych.
 
-Projektem jest prosta gra w statki przeciwko AI napisana w czystym Typescript.
+Projektem jest prosta gra w statki przeciwko AI napisana w czystym języku Typescript.
 
 Project is simple Battleships game against AI written in plain Typescript.
 
@@ -18,3 +18,5 @@ Project is simple Battleships game against AI written in plain Typescript.
 2. Open folder dist
 3. Run file index.html
 4. Enjoy :)
+
+
