@@ -1,9 +1,8 @@
 # BattleShips-Typescript
-Repozytorium projektu zaliczeniowego na przedmiot Programowanie Aplikacji Webowych.
 
-Projektem jest prosta gra w statki przeciwko AI napisana w czystym języku Typescript.
+Projektem jest prosta gra w statki przeciwko AI napisana w czystym języku Typescript. Dodatkowe paczki użyte w projekcie to Sass i Webpack.
 
-Project is simple Battleships game against AI written in plain Typescript.
+Project is simple Battleships game against AI written in plain Typescript. Extra packages used in project are Sass and Webpack
 
 # Jak uzyc
 
@@ -19,4 +18,22 @@ Project is simple Battleships game against AI written in plain Typescript.
 3. Run file index.html
 4. Enjoy :)
 
+# Jak zbuildować
 
+Jeżeli chcesz dokonać zmian w kodzie i przebuildować aplikację:
+
+```
+cd Projekt
+npm install
+webpack --watch
+```
+
+# How to build
+
+If you want to make changes in code and rebuild the app:
+
+```
+cd Projekt
+npm install
+webpack --watch
+```

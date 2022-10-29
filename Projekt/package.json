@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "style-loader": "^3.3.1"
+  },
+  "dependencies": {
+    "sass-loader": "^13.1.0",
+    "ts-loader": "^9.4.1"
+  }
+}
